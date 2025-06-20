@@ -506,14 +506,14 @@ a.btn-agendar {
   opacity: 0.9;
 }
 
-.minnuti-logo {
+.minnutti-logo {
   position: absolute;
   right: 0;
   bottom: 0;
   padding: 10px;
 }
 
-.minnuti-logo svg {
+.minnutti-logo svg {
   height: 30px;
   filter: invert(100%) sepia(100%) saturate(100%) hue-rotate(156deg)
     brightness(0%) contrast(100%) opacity(15%);
