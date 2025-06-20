@@ -208,17 +208,17 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   const slides = [
     {
-      image: "/image1.jpg",
+      image: "./images/image1.jpg",
       text: "Ambiente acolhedor, seguro e personalizado para você",
       buttonLink: "#contato",
     },
     {
-      image: "/image2.jpg",
+      image: "./images/image2.jpg",
       text: "Acompanhamento psicológico individual",
       buttonLink: "#psicologia",
     },
     {
-      image: "/image3.jpg",
+      image: "./images/image3.jpg",
       text: "Cuidando bem de quem amamos",
       buttonLink: "#terapia",
     },
