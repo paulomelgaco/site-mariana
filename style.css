@@ -1,0 +1,709 @@
+@import url("https://fonts.googleapis.com/css2?family=Meow+Script&family=Ms+Madi&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* Reset e configurações básicas */
+
+:root {
+  /* --color-bg1: #d5e8f0;
+  --color-bg2: #a9b8c4;
+  --color-destaques: #1d3246;
+  --color-details: #96b7bd;
+  --color-text: #565656; */
+
+  --color-bg1: #f9f5f2;
+  --color-bg2: #f3ece6;
+  --color-destaques: #274543;
+  --color-details: #c4c7b2;
+  --color-text: #565656;
+
+  --filter-bg1: filter: brightness(0) saturate(100%) invert(87%) sepia(2%) saturate(710%) hue-rotate(326deg) brightness(113%) contrast(95%);
+  --filter-bg2: brightness(0) saturate(100%) invert(96%) sepia(33%) saturate(389%) hue-rotate(296deg) brightness(104%) contrast(91%);    
+  --filter-destaques: filter: brightness(0) saturate(100%) invert(18%) sepia(10%) saturate(2036%) hue-rotate(127deg) brightness(99%) contrast(80%);
+  --filter-details: filter: brightness(0) saturate(100%) invert(88%) sepia(23%) saturate(162%) hue-rotate(29deg) brightness(91%) contrast(80%);
+  --filter-text: filter: brightness(0) saturate(100%) invert(31%) sepia(0%) saturate(1250%) hue-rotate(151deg) brightness(101%) contrast(86%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ajustes para o offset do header fixo */
+section {
+  scroll-margin-top: 80px;
+  /* height: 100vh; */
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  line-height: 1.6;
+  color: var(--color-text);
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+.header {
+  background-color: var(--color-bg2);
+  padding: 1rem 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo-img {
+  height: 48px;
+  width: auto;
+  filter: invert(20%) sepia(12%) saturate(1127%) hue-rotate(132deg)
+    brightness(95%) contrast(92%);
+}
+
+.logo-text h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.logo-text p {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav a {
+  position: relative;
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 400;
+  transition: opacity 0.3s ease;
+}
+
+.nav a:hover {
+  opacity: 0.8;
+  /* font-style: italic; */
+}
+
+.nav a.btn-contato {
+  font-weight: 500;
+  color: var(--color-bg1);
+}
+
+.nav a.btn-contato:hover {
+  font-weight: 700;
+}
+
+/* Linha animada ao hover */
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px; /* distância da linha até o texto */
+  width: 0%;
+  height: 2px;
+  background-color: var(--color-destaques); /* ou outra cor desejada */
+  transition: width 0.3s ease;
+}
+
+.nav a:hover::after {
+  width: 100%;
+}
+
+/* Opcional: linha diferente ou nenhuma para o botão */
+.nav a.btn-contato::after {
+  display: none;
+}
+
+.btn-contato {
+  background-color: var(--color-destaques);
+  padding: 3rem 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.btn-contato:hover {
+  /* background-color: rgba(5, 36, 19, 1); */
+  /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); */
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(45, 90, 61, 0.3);
+  opacity: 1 !important;
+}
+
+.mobile-menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 4px;
+}
+
+.mobile-menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background-color: var(--color-details);
+  transition: 0.3s;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  height: 100vh;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 10, 10, 0.8),
+    rgba(5, 5, 5, 0.6)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.hero-image img {
+  filter: blur(6px);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 1s ease;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  z-index: 2;
+  max-width: 800px;
+  padding: 0 20px;
+  margin: 0 auto;
+  gap: 5rem;
+}
+
+.hero-content h2 {
+  font-size: 3rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+  /* letter-spacing: 2px; */
+  margin-bottom: 1.5rem;
+  transition: opacity 0.5s ease;
+}
+
+.hero-btn {
+  background-color: var(--color-destaques);
+  color: white;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-bottom-right-radius: 12px;
+  border-top-left-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.hero-btn:hover {
+  background-color: var(--color-details);
+  color: var(--color-destaques);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Terapia Virtual Section */
+.terapia-virtual {
+  padding: 80px 0;
+  /* background: linear-gradient(0.5deg, var(--color-bg1), var(--color-text)); */
+  /* background: var(--color-bg2); */
+  background: linear-gradient(0deg, var(--color-bg2), var(--color-bg1));
+}
+
+.terapia-virtual h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: var(--color-destaques);
+  margin-bottom: 3rem;
+  /* font-style: italic; */
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.card {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.card h3 {
+  font-size: 1.3rem;
+  color: var(--color-destaques);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.card p {
+  color: var(--color-text);
+  line-height: 1.8;
+  text-align: center;
+}
+
+/* Conheça a Psicóloga Section */
+.conheca-psicologa {
+  padding: 80px 0;
+  background: linear-gradient(135deg, var(--color-bg1), var(--color-bg2));
+}
+
+.content-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.image-container {
+  position: relative;
+}
+
+.image-container img {
+  width: 100%;
+  height: 700px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.text-content {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 4px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.text-content h2 {
+  font-size: 2.2rem;
+  color: var(--color-destaques);
+  margin-bottom: 1.5rem;
+}
+
+.text-content p {
+  color: var(--text-dark);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  text-align: justify;
+}
+
+.btn-agendar {
+  background-color: var(--color-destaques);
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-bottom-right-radius: 12px;
+  border-top-left-radius: 12px;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
+  margin: 0 auto;
+}
+
+.btn-agendar:hover {
+  background-color: var(--color-details);
+  color: var(--color-destaques);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(45, 90, 61, 0.3);
+}
+
+a.btn-agendar {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+/* Perguntas Frequentes Section */
+.perguntas-frequentes {
+  padding: 80px 0;
+  background: linear-gradient(135deg, var(--color-bg1), var(--color-bg2));
+}
+
+.perguntas-frequentes h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: var(--color-dark);
+  margin-bottom: 3rem;
+}
+
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background: white;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.faq-question {
+  width: 100%;
+  padding: 1.5rem;
+  background: var(--color-destaques);
+  color: var(--color-bg1);
+  border: none;
+  text-align: left;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.faq-question:hover {
+  background-color: var(--color-details);
+  color: var(--color-destaques);
+}
+
+.faq-icon {
+  transition: transform 0.2s ease;
+}
+
+.faq-icon {
+  height: 20px;
+  width: auto;
+  /* filter: invert(94%) sepia(5%) saturate(236%) hue-rotate(33deg) brightness(96%) contrast(88%); */
+  filter: var(--filter-bg2);
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(90deg);
+}
+
+.faq-answer {
+  max-height: 0;
+
+  transition: max-height 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 1200px;
+}
+
+.faq-answer p {
+  padding: 1.5rem;
+  color: var(--color-text);
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--color-destaques);
+  color: var(--color-bg2);
+  padding: 2rem 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-content .logo {
+  /* filter: invert(97%) sepia(4%) saturate(236%) hue-rotate(13deg) brightness(120%) contrast(94%); */
+  filter: var(--filter-bg2);
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.footer-logo-text h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0;
+}
+
+.footer-logo-text p {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.footer-info {
+  text-align: right;
+}
+
+.footer-info p {
+  margin: 0.2rem 0;
+  opacity: 0.9;
+}
+
+.minnuti-logo {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 10px;
+}
+
+.minnuti-logo svg {
+  height: 30px;
+  filter: invert(100%) sepia(100%) saturate(100%) hue-rotate(156deg)
+    brightness(0%) contrast(100%) opacity(15%);
+}
+
+footer a:hover svg {
+  filter: invert(51%) sepia(69%) saturate(910%) hue-rotate(156deg)
+    brightness(106%) contrast(106%) drop-shadow(1px -1px 6px #00ccff);
+}
+
+#floatingBtn {
+  position: fixed;
+  bottom: 3rem;
+  right: 3rem;
+  z-index: 99999;
+  background-color: var(--color-destaques);
+  border: none;
+  border-radius: 50%;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/*
+#floatingBtn {
+  width: 40px;
+  height: 40px;
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
+} 
+*/
+/* filter: invert(100%) sepia(4%) saturate(324%) hue-rotate(315deg) brightness(106%) contrast(96%); */
+
+.btn-float {
+  width: 40px;
+  height: auto;
+  /* filter: invert(19%) sepia(6%) saturate(1964%) hue-rotate(85deg) brightness(115%) contrast(90%); */
+  filter: var(--filter-bg2);
+}
+
+#floatingBtn.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.floating-wrapper {
+  position: relative;
+}
+
+/* Responsividade Mobile */
+@media (max-width: 768px) {
+  .minnuti-logo {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 10px;
+  }
+
+  .header .container {
+    justify-content: center;
+    position: relative;
+  }
+
+  /* Linha animada ao hover */
+.nav a::after {
+  display: none;
+}
+
+  .mobile-menu-toggle {
+    display: flex;
+    position: absolute;
+    right: 35px;
+    top: 50%;
+    transform: translateY(-20%);
+    opacity: 55%;
+  }
+
+  .logo {
+    justify-content: center;
+    height: 30px;
+    margin: 12px;
+    opacity: 95%;
+    width: auto;
+  }
+
+  .nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: var(--color-bg2);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav.active {
+    display: block;
+  }
+
+  .nav ul {
+    flex-direction: column;
+    padding: 1rem 0;
+    gap: 0;
+  }
+
+  .nav li {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .nav a {
+    display: block;
+    padding: 1rem;
+  }
+
+  .hero-content h2 {
+    font-size: 2rem;
+    letter-spacing: 1px;
+  }
+
+  .content-wrapper {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .image-container {
+    order: 1;
+  }
+
+  .text-content {
+    order: 2;
+    padding: 2rem;
+  }
+
+  .cards-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .footer-info {
+    text-align: center;
+  }
+
+  .terapia-virtual h2,
+  .perguntas-frequentes h2 {
+    font-size: 2rem;
+  }
+
+  .text-content h2 {
+    font-size: 1.8rem;
+  }
+
+  #floatingBtn {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    padding: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  .hero-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .card,
+  .text-content {
+    padding: 1.5rem;
+  }
+
+  .faq-question {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  .faq-answer p {
+    padding: 1rem;
+  }
+}
